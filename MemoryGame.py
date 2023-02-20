@@ -88,13 +88,13 @@ def stateManager():
         text = Label(window, text="Let's start!")
         text.config(font=("Arial",FONT_SIZE))
         text.place(x=0, y=0)
-        window.after(1000,stateManager) # msec sonra yeni state'e gecer
+        window.after(1000,stateManager) #goes to new state after 1000 miliseconds
 
     elif state == "show_numbers":
         print("show_numbers")
         text.destroy()
         if index != numberCount:
-            xPos = random.randrange(1,(window.winfo_width()-(FONT_SIZE*2))) #sayi ekranin disina cikmasin
+            xPos = random.randrange(1,(window.winfo_width()-(FONT_SIZE*2))) #so that the texts dont go out of window borders
             yPos = random.randrange(1,(window.winfo_height()-(FONT_SIZE*2)))
             text = Label(window, text=str(numbers[index]))
             text.config(font=("Consolas",FONT_SIZE))
@@ -105,7 +105,7 @@ def stateManager():
         else:
             state = "generate_user_input_field"
             index = 0 #for future use
-            window.after(100,stateManager) #100msec sonra yeni state'e gecer     
+            window.after(100,stateManager) #goes to new state after 100 miliseconds
         
     elif state == "generate_user_input_field":
         print("generate_user_input_field")
@@ -124,7 +124,7 @@ def stateManager():
         submitButton.grid_forget()
         userEntry = inputBox.get()
         userEntry = userEntry.split(',')
-        if len(userEntry) != numberCount: #eksik ya da fazla giriş
+        if len(userEntry) != numberCount: #in case of input containing higher or lower number of items than we showed
             print("input count != expected count")
             state = "you_lose"
         else:
